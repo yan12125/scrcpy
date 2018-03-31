@@ -30,6 +30,12 @@ SDL_bool sdl_init_and_configure(void) {
     }
 #endif
 
+#if SDL_VERSION_ATLEAST(2, 0, 8)
+    if (!SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0")) {
+        LOGW("Unable to disable _NET_WM_BYPASS_COMPOSITOR");
+    }
+#endif
+
     return SDL_TRUE;
 }
 
